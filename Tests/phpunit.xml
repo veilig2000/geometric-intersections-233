@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="Bootstrap.php">
+	<testsuites>
+		<testsuite name="Ruby Quiz 233">
+			<directory>./</directory>
+		</testsuite>
+	</testsuites>
+
+  <logging>
+    <log type="coverage-html" target="./build/coverage" title="HCS"
+         charset="UTF-8" yui="true" highlight="true"
+         lowUpperBound="10" highLowerBound="20"/>
+    <log type="coverage-clover" target="./build/logs/clover.xml"/>
+    <log type="testdox-html" target="./build/logs/testdox.html"/>
+    <log type="junit" target="./build/logs/junit.xml" logIncompleteSkipped="false"/>
+  </logging>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./</directory>
+	  <exclude>
+		<file>./Bootstrap.php</file>
+		<file>./TestConfig.php</file>
+	  </exclude>
+    </whitelist>
+  </filter>
+</phpunit>
