@@ -18,10 +18,11 @@
 
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">./</directory>
+      <directory suffix=".php">../</directory>
 	  <exclude>
-		<file>./Bootstrap.php</file>
-		<file>./TestConfig.php</file>
+		<file>../Bootstrap.php</file>
+		<file>../Autoloader.php</file>
+		<directory>../Tests</directory>
 	  </exclude>
     </whitelist>
   </filter>
