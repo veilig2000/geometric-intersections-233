@@ -1,6 +1,6 @@
 <?php
 
-class Line
+class Line implements ElementInterface
 {
     /**
      * Point 1
@@ -51,5 +51,17 @@ class Line
     public function getPoint2()
     {
         return $this->_p2;
+    }
+
+    /**
+     * Determine if element intersects with new element
+     *
+     * @param ElementInterface $element
+     *
+     * @return bool
+     * @access public
+     */
+    public function intersect(ElementInterface $element)
+    {
     }
 }

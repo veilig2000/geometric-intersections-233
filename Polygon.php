@@ -1,6 +1,6 @@
 <?php
 
-class Polygon
+class Polygon implements ElementInterface
 {
     /**
      * Points Collection
@@ -44,5 +44,18 @@ class Polygon
     public function addPoint(Point $point)
     {
         $this->_points->add($point);
+        return $this;
+    }
+
+    /**
+     * Determine if element intersects with new element
+     *
+     * @param ElementInterface $element
+     *
+     * @return bool
+     * @access public
+     */
+    public function intersect(ElementInterface $element)
+    {
     }
 }

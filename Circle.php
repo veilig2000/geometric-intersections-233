@@ -1,6 +1,6 @@
 <?php
 
-class Circle
+class Circle implements ElementInterface
 {
     /**
      * Point
@@ -51,5 +51,17 @@ class Circle
     public function getRadius()
     {
         return $this->_radius;
+    }
+
+    /**
+     * Determine if element intersects with new element
+     *
+     * @param ElementInterface $element
+     *
+     * @return bool
+     * @access public
+     */
+    public function intersect(ElementInterface $element)
+    {
     }
 }
