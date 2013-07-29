@@ -2,10 +2,15 @@
 
 class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
 {
+    //  {{{ setUp()
+
     protected function setUp()
     {
         $this->_sut = new Point_Collection();
     }
+
+    //  }}}
+    //  {{{ objectInstanceOfShouldBePointsCollection()
 
     /**
      * @test
@@ -15,6 +20,9 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Point_Collection', $this->_sut);
     }
 
+    //  }}}
+    //  {{{ initialStateShouldBeEmpty()
+
     /**
      * @test
      */
@@ -23,6 +31,9 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $this->_sut->getSize());
         $this->assertEquals(0, $this->_sut->key());
     }
+
+    //  }}}
+    //  {{{ addShouldAddNewPointToCollection()
 
     /**
      * @test
@@ -40,6 +51,9 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->_sut->getSize());
     }
 
+    //  }}}
+    //  {{{ currentShouldReturnValueAtCurrentIndex()
+
     /**
      * @test
      */
@@ -52,4 +66,6 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(spl_object_hash($point), spl_object_hash($currentPoint));
     }
+
+    //  }}}
 }
