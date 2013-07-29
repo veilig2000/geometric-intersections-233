@@ -37,6 +37,20 @@ class Tests_FactoryTest extends PHPUnit_Framework_TestCase
     }
 
     //  }}}
+    //  {{{ createCircleShouldReturnCircleObject()
+
+    /**
+     * @test
+     */
+    public function createCircleShouldReturnCircleObject()
+    {
+        $p = $this->_sut->createPoint(1, 1);
+
+        $circle = $this->_sut->createCircle($p, 1);
+        $this->assertInstanceOf('Circle', $circle);
+    }
+
+    //  }}}
     //  {{{ createPointCollectionhouldReturnPointCollectionObject()
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-class Tests_PointTest extends PHPUnit_Framework_TestCase
+class Tests_PointTest extends Tests_TestAbstract
 {
     //  {{{ getXShouldReturnXCoordinate()
 
@@ -9,7 +9,8 @@ class Tests_PointTest extends PHPUnit_Framework_TestCase
      */
     public function getXShouldReturnXCoordinate()
     {
-        $point = new Point(2, 4);
+        $factory = $this->_getFactory();
+        $point = $factory->createPoint(2, 4);
         $this->assertEquals(2, $point->getX());
     }
 
@@ -21,7 +22,8 @@ class Tests_PointTest extends PHPUnit_Framework_TestCase
      */
     public function getYShouldReturnYCoordinate()
     {
-        $point = new Point(2, 4);
+        $factory = $this->_getFactory();
+        $point = $factory->createPoint(2, 4);
         $this->assertEquals(4, $point->getY());
     }
 
@@ -33,8 +35,9 @@ class Tests_PointTest extends PHPUnit_Framework_TestCase
      */
     public function getDistanceShouldReturnDistanceBetweenPoints()
     {
-        $point1 = new Point(1, 1);
-        $point2 = new Point(1, 2);
+        $factory = $this->_getFactory();
+        $point1 = $factory->createPoint(1, 1);
+        $point2 = $factory->createPoint(1, 2);
 
         $this->assertEquals(1, $point1->getDistance($point2));
     }

@@ -1,12 +1,13 @@
 <?php
 
-class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
+class Tests_Point_CollectionTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 
     protected function setUp()
     {
-        $this->_sut = new Point_Collection();
+        $factory = $this->_getFactory();
+        $this->_sut = $factory->createPointCollection();
     }
 
     //  }}}
@@ -40,12 +41,14 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function addShouldAddNewPointToCollection()
     {
-        $point = new Point(1, 1);
+        $factory = $this->_getFactory();
+
+        $point = $factory->createPoint(1, 1);
         $this->_sut->add($point);
         //  Test that we go from 0 to 1
         $this->assertEquals(1, $this->_sut->getSize());
 
-        $point = new Point(2, 2);
+        $point = $factory->createPoint(2, 2);
         $this->_sut->add($point);
         //  Test that we go from 1 to 2
         $this->assertEquals(2, $this->_sut->getSize());
@@ -59,7 +62,8 @@ class Tests_Point_CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function currentShouldReturnValueAtCurrentIndex()
     {
-        $point = new Point(1, 1);
+        $factory = $this->_getFactory();
+        $point = $factory->createPoint(1, 1);
         $this->_sut->add($point);
 
         $currentPoint = $this->_sut->current();

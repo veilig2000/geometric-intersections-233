@@ -35,6 +35,23 @@ class Factory
     }
 
     //  }}}
+    //  {{{ createCircle()
+
+    /**
+     * Create a new Circle object
+     *
+     * @param Point $point
+     * @param integer $radius
+     *
+     * @return Circle
+     * @access public
+     */
+    public function createCircle(Point $point, $radius)
+    {
+        return new Circle($point, $radius);
+    }
+
+    //  }}}
     //  {{{ createPolygon()
 
     /**

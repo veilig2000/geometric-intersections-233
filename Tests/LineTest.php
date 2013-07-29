@@ -1,17 +1,18 @@
 <?php
 
-class Tests_LineTest extends PHPUnit_Framework_TestCase
+class Tests_LineTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 
     protected function setUp()
     {
+        $factory = $this->_getFactory();
         //  Point1 defined by 1,1 coordinates
-        $point1 = new Point(1, 1);
+        $point1 = $factory->createPoint(1, 1);
         //  Point1 defined by 2,2 coordinates
-        $point2 = new Point(2, 2);
+        $point2 = $factory->createPoint(2, 2);
 
-        $this->_sut = new Line($point1, $point2);
+        $this->_sut = $factory->createLine($point1, $point2);
     }
 
     //  }}}
@@ -81,12 +82,13 @@ class Tests_LineTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldCalculateIntersectionOfCircle()
     {
-        $point  = new Point(1, 1);
-        $circle = new Circle($point, 5);
+        $factory = $this->_getFactory();
+        $point  = $factory->createPoint(1, 1);
+        $circle = $factory->createCircle($point, 5);
 
-        $point1 = new Point(3, 5);
-        $point2 = new Point(7, 10);
-        $line   = new Line($point1, $point2);
+        $point1 = $factory->createPoint(3, 5);
+        $point2 = $factory->createPoint(7, 10);
+        $line   = $factory->createLine($point1, $point2);
 
         $this->assertTrue($line->intersect($circle));
     }
@@ -99,12 +101,13 @@ class Tests_LineTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldNotCalculateIntersectionOfCircle()
     {
-        $point  = new Point(1, 1);
-        $circle = new Circle($point, 4);
+        $factory = $this->_getFactory();
+        $point  = $factory->createPoint(1, 1);
+        $circle = $factory->createCircle($point, 4);
 
-        $point1 = new Point(3, 5);
-        $point2 = new Point(7, 10);
-        $line   = new Line($point1, $point2);
+        $point1 = $factory->createPoint(3, 5);
+        $point2 = $factory->createPoint(7, 10);
+        $line   = $factory->createLine($point1, $point2);
 
         $this->assertFalse($line->intersect($circle));
     }
@@ -122,13 +125,14 @@ class Tests_LineTest extends PHPUnit_Framework_TestCase
         $x3, $y3, // point 3
         $x4, $y4  // point 4
     ) {
-        $pointA1 = new Point($x1, $y1);
-        $pointA2 = new Point($x2, $y2);
-        $lineA   = new Line($pointA1, $pointA2);
+        $factory = $this->_getFactory();
+        $pointA1 = $factory->createPoint($x1, $y1);
+        $pointA2 = $factory->createPoint($x2, $y2);
+        $lineA   = $factory->createLine($pointA1, $pointA2);
 
-        $pointB1 = new Point($x3, $y3);
-        $pointB2 = new Point($x4, $y4);
-        $lineB   = new Line($pointB1, $pointB2);
+        $pointB1 = $factory->createPoint($x3, $y3);
+        $pointB2 = $factory->createPoint($x4, $y4);
+        $lineB   = $factory->createLine($pointB1, $pointB2);
 
         $this->assertTrue($lineA->intersect($lineB));
     }
@@ -141,13 +145,14 @@ class Tests_LineTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldNotCalculateIntersectionOfLine()
     {
-        $pointA1 = new Point(2, 7);
-        $pointA2 = new Point(5, 8);
-        $lineA   = new Line($pointA1, $pointA2);
+        $factory = $this->_getFactory();
+        $pointA1 = $factory->createPoint(2, 7);
+        $pointA2 = $factory->createPoint(5, 8);
+        $lineA   = $factory->createLine($pointA1, $pointA2);
 
-        $pointB1 = new Point(4, 6);
-        $pointB2 = new Point(6, 7);
-        $lineB   = new Line($pointB1, $pointB2);
+        $pointB1 = $factory->createPoint(4, 6);
+        $pointB2 = $factory->createPoint(6, 7);
+        $lineB   = $factory->createLine($pointB1, $pointB2);
 
         $this->assertFalse($lineA->intersect($lineB));
     }
