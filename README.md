@@ -25,6 +25,7 @@ Typical Setup
 
         $circle->inserect($line);
     or
+
         $line->intersect($circle);
 
 
