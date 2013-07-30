@@ -1,6 +1,6 @@
 <?php
 
-class Polygon implements ElementInterface
+class Polygon extends ElementAbstract implements ElementInterface
 {
     //  {{{ properties
 
@@ -73,38 +73,18 @@ class Polygon implements ElementInterface
     }
 
     //  }}}
-    //  {{{ intersect()
-
-    /**
-     * Determine if element intersects with another element
-     *
-     * @param ElementInterface $element
-     *
-     * @return bool
-     * @access public
-     */
-    public function intersect(ElementInterface $element)
-    {
-        if ('Line' == get_class($element)) {
-            $intersector = new Polygon_Intersect_Line;
-        } elseif ('Circle' == get_class($element)) {
-            $intersector = new Polygon_Intersect_Circle;
-        }
-
-        return $intersector->intersect($this, $element);
-    }
-
-    //  }}}
     //  {{{ getLines()
 
     /**
      * Get all the lines in the polygon
      *
+     * @param Factory $factory
+     *
      * @return array()
      * @access public
      * @throw RuntimeException if Polygon is not valid
      */
-    public function getLines()
+    public function getLines(Factory $factory)
     {
         if (!$this->isValid()) {
             throw new RuntimeException('Not a valid Polygon');
@@ -117,14 +97,14 @@ class Polygon implements ElementInterface
         while ($points->hasNext()) {
             $point1 = $points->current();
             $point2 = $points->next()->current();
-            $lines[] = new Line($point1, $point2);
+            $lines[] = $factory->createLine($point1, $point2);
         }
 
         //  get last point in collection
         $point1 = $points->current();
         //  get first element in collection
         $point2 = $points->rewind()->current();
-        $lines[] = new Line($point1, $point2);
+        $lines[] = $factory->createLine($point1, $point2);
 
         return $lines;
     }

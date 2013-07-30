@@ -31,7 +31,9 @@ class Factory
      */
     public function createLine(Point $p1, Point $p2)
     {
-        return new Line($p1, $p2);
+        $line = new Line($p1, $p2);
+        $line->setIntersectorFactory(new Line_Intersect_Factory);
+        return $line;
     }
 
     //  }}}
@@ -48,7 +50,9 @@ class Factory
      */
     public function createCircle(Point $point, $radius)
     {
-        return new Circle($point, $radius);
+        $circle = new Circle($point, $radius);
+        $circle->setIntersectorFactory(new Circle_Intersect_Factory);
+        return $circle;
     }
 
     //  }}}
@@ -64,7 +68,9 @@ class Factory
      */
     public function createPolygon(Point_Collection $points)
     {
-        return new Polygon($points);
+        $polygon = new Polygon($points);
+        $polygon->setIntersectorFactory(new Polygon_Intersect_Factory);
+        return $polygon;
     }
 
     //  }}}

@@ -1,6 +1,6 @@
 <?php
 
-class Line implements ElementInterface
+class Line extends ElementAbstract implements ElementInterface
 {
     //  {{{ properties
 
@@ -62,28 +62,6 @@ class Line implements ElementInterface
     public function getPoint2()
     {
         return $this->_p2;
-    }
-
-    //  }}}
-    //  {{{ intersect()
-
-    /**
-     * Determine if element intersects with another element
-     *
-     * @param ElementInterface $element
-     *
-     * @return bool
-     * @access public
-     */
-    public function intersect(ElementInterface $element)
-    {
-        if ('Circle' == get_class($element)) {
-            $intersector = new Line_Intersect_Circle;
-        } elseif ('Line' == get_class($element)) {
-            $intersector = new Line_Intersect_Line;
-        }
-
-        return $intersector->intersect($this, $element);
     }
 
     //  }}}

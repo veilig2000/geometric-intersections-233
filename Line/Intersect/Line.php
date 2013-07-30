@@ -1,28 +1,49 @@
 <?php
 class Line_Intersect_Line implements IntersectInterface
 {
+    //  {{{ properties
+
+    private $_line1;
+    private $_line2;
+
+    //  }}}
+    //  {{{ __construct()
+
+    /**
+     * Constructor
+     *
+     * @param Line $line1
+     * @param Line $line2
+     *
+     * @return bool
+     * @access public
+     */
+    public function __construct(Line $line1, Line $line2)
+    {
+        $this->_line1 = $line1;
+        $this->_line2 = $line2;
+    }
+
+    //  }}}
     //  {{{ intersect
 
     /**
      * Find if two lines intersect
      *
-     * @param ElementInterface $e1 Line
-     * @param ElementInterface $e2 Line
-     *
      * @return bool
      * @access public
      */
-    public function intersect(ElementInterface $e1, ElementInterface $e2)
+    public function intersect()
     {
-        $p1 = $e1->getPoint1();
-        $p2 = $e1->getPoint2();
+        $p1 = $this->_line1->getPoint1();
+        $p2 = $this->_line1->getPoint2();
 
         $A1 = $p2->getY() - $p1->getY();
         $B1 = $p1->getX() - $p2->getX();
         $C1 = ($A1 * $p1->getX()) + ($B1 * $p1->getY());
 
-        $p1 = $e2->getPoint1();
-        $p2 = $e2->getPoint2();
+        $p1 = $this->_line2->getPoint1();
+        $p2 = $this->_line2->getPoint2();
 
         $A2 = $p2->getY() - $p1->getY();
         $B2 = $p1->getX() - $p2->getX();

@@ -1,6 +1,6 @@
 <?php
 
-class Circle implements ElementInterface
+class Circle extends ElementAbstract implements ElementInterface
 {
     //  {{{ properties
 
@@ -62,27 +62,6 @@ class Circle implements ElementInterface
     public function getRadius()
     {
         return $this->_radius;
-    }
-
-    //  }}}
-    //  {{{ intersect()
-
-    /**
-     * Determine if element intersects with another element
-     *
-     * @param ElementInterface $element
-     *
-     * @return bool
-     * @access public
-     */
-    public function intersect(ElementInterface $element)
-    {
-        if ('Line' == get_class($element)) {
-            $intersector = new Circle_Intersect_Line;
-        } elseif ('Circle' == get_class($element)) {
-            $intersector = new Circle_Intersect_Circle;
-        }
-        return $intersector->intersect($this, $element);
     }
 
     //  }}}
