@@ -1,12 +1,32 @@
 Geometric-calculations
 ======================
-
 Geometric Calculations
 
+Introduction
+------------
+[Ruby Quiz - problem 233] (http://rubyquiz.strd6.com/quizzes/233-geometric-intersections)
+*detect the intersections of various geometric elements: circles, lines, and polygons.*
 
 
+Typical Setup
+-------------
+1.  Get a factory
+    $factory = new Factory
+2.  Use the factory to create points which you can then use via dependency injection and composition to create objects
+    $point  = $factory->createPoint(<xCoord>, <yCoord>);
+    $circle = $factory->createCircle($point, <radius>);
+
+    $point1 = $factory->createPoint(<xCoord>, <yCoord>);
+    $point2 = $factory->createPoint(<xCoord>, <yCoord>);
+    $line   = $factory->createLine($point1, $point2);
+3.  Once you have some Geometric Elements created, you can test their intersection
+    $circle->inserect($line);
+    or
+    $line->intersect($circle);
 
 
+PHPUnit --testdox
+-----------------
     PHPUnit 3.7.22 by Sebastian Bergmann.
 
     Configuration read from /server/Groupon/Tests/phpunit.xml
