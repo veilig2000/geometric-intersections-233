@@ -1,19 +1,20 @@
 <?php
 
-class Tests_PolygonTest extends PHPUnit_Framework_TestCase
+class Tests_PolygonTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 
     protected function setUp()
     {
-        $collection = new Point_Collection();
+        $factory = $this->_getFactory();
+        $collection = $factory->createPointCollection();
 
         for ($i = 1; $i < 5; ++$i) {
-            $point = new Point($i, $i);
+            $point = $factory->createPoint($i, $i);
             $collection->add($point);
         }
 
-        $this->_sut = new Polygon($collection);
+        $this->_sut = $factory->createPolygon($collection);
     }
 
     //  }}}
@@ -46,10 +47,12 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function addPointsShouldAddPointToCollection()
     {
+        $factory = $this->_getFactory();
+
         $collectionBefore = $this->_sut->getPoints();
         $beforeSize = $collectionBefore->getSize();
 
-        $point = new Point(6, 6);
+        $point = $factory->createPoint(6, 6);
         $this->_sut->addPoint($point);
 
         $collectionAfter = $this->_sut->getPoints();
@@ -66,16 +69,18 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function isValidShouldReturnTrueForMoreThanTwoPoints()
     {
-        $pointA = new Point(0, 4);
-        $pointB = new Point(4, 4);
-        $pointC = new Point(2, 9);
+        $factory = $this->_getFactory();
 
-        $collection = new Point_Collection();
+        $pointA = $factory->createPoint(0, 4);
+        $pointB = $factory->createPoint(4, 4);
+        $pointC = $factory->createPoint(2, 9);
+
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB)
                    ->add($pointC);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         $this->assertTrue($polygon->isValid());
     }
@@ -88,14 +93,16 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function isValidShouldReturnFalseForLessThanThreePoints()
     {
-        $pointA = new Point(4, 4);
-        $pointB = new Point(2, 9);
+        $factory = $this->_getFactory();
 
-        $collection = new Point_Collection();
+        $pointA = $factory->createPoint(4, 4);
+        $pointB = $factory->createPoint(2, 9);
+
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         $this->assertFalse($polygon->isValid());
     }
@@ -108,22 +115,23 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldCalculatePolygonIntersectionOfLine()
     {
+        $factory = $this->_getFactory();
         //  Triangle in first quadrant
-        $pointA = new Point(3, 6);
-        $pointB = new Point(8, 4);
-        $pointC = new Point(5, 9);
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
 
-        $collection = new Point_Collection();
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB)
                    ->add($pointC);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         //  Line intersecting triangle
-        $pointD = new Point(4, 4);
-        $pointE = new Point(5, 7);
-        $line   = new Line($pointD, $pointE);
+        $pointD = $factory->createPoint(4, 4);
+        $pointE = $factory->createPoint(5, 7);
+        $line   = $factory->createLine($pointD, $pointE);
 
         $this->assertTrue($polygon->intersect($line));
     }
@@ -136,22 +144,23 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldCalculatePolygonIntersectionOfLine2()
     {
+        $factory = $this->_getFactory();
         //  Triangle in first quadrant
-        $pointA = new Point(3, 6);
-        $pointB = new Point(8, 4);
-        $pointC = new Point(5, 9);
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
 
-        $collection = new Point_Collection();
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB)
                    ->add($pointC);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         //  Line intersecting triangle
-        $pointD = new Point(2, 9);
-        $pointE = new Point(5, 7);
-        $line   = new Line($pointD, $pointE);
+        $pointD = $factory->createPoint(2, 9);
+        $pointE = $factory->createPoint(5, 7);
+        $line   = $factory->createLine($pointD, $pointE);
 
         $this->assertTrue($polygon->intersect($line));
     }
@@ -164,21 +173,22 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldCalculatePolygonIntersectionOfCircle()
     {
+        $factory = $this->_getFactory();
         //  Triangle in first quadrant
-        $pointA = new Point(3, 6);
-        $pointB = new Point(8, 4);
-        $pointC = new Point(5, 9);
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
 
-        $collection = new Point_Collection();
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB)
                    ->add($pointC);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         //  Line intersecting triangle
-        $pointD = new Point(5, 7);
-        $circle = new Circle($pointD, 5);
+        $pointD = $factory->createPoint(5, 7);
+        $circle = $factory->createCircle($pointD, 5);
 
         $this->assertTrue($polygon->intersect($circle));
     }
@@ -192,20 +202,21 @@ class Tests_PolygonTest extends PHPUnit_Framework_TestCase
      */
     public function intersectShouldThrowExceptionIfInvalidPolygon()
     {
+        $factory = $this->_getFactory();
         //  Triangle in first quadrant
-        $pointA = new Point(3, 6);
-        $pointB = new Point(8, 4);
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
 
-        $collection = new Point_Collection();
+        $collection = $factory->createPointCollection();
         $collection->add($pointA)
                    ->add($pointB);
 
-        $polygon = new Polygon($collection);
+        $polygon = $factory->createPolygon($collection);
 
         //  Line intersecting triangle
-        $pointD = new Point(2, 9);
-        $pointE = new Point(5, 7);
-        $line   = new Line($pointD, $pointE);
+        $pointD = $factory->createPoint(2, 9);
+        $pointE = $factory->createPoint(5, 7);
+        $line   = $factory->createLine($pointD, $pointE);
 
         $polygon->intersect($line);
     }
