@@ -1,4 +1,4 @@
-Geometric-calculations
+Geometric-Calculations
 ======================
 Geometric Calculations
 
