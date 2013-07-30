@@ -1,6 +1,6 @@
 <?php
 
-class Tests_PointTest extends Tests_TestAbstract
+class PointTest extends Tests_TestAbstract
 {
     //  {{{ getXShouldReturnXCoordinate()
 

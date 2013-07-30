@@ -1,6 +1,6 @@
 <?php
 
-class Tests_PolygonTest extends Tests_TestAbstract
+class PolygonTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 

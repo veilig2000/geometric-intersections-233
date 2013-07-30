@@ -1,6 +1,6 @@
 <?php
 
-class Tests_CircleTest extends Tests_TestAbstract
+class CircleTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 

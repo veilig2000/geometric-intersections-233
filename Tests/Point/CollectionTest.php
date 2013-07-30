@@ -1,6 +1,6 @@
 <?php
 
-class Tests_Point_CollectionTest extends Tests_TestAbstract
+class Point_CollectionTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 

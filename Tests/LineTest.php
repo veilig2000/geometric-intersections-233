@@ -1,6 +1,6 @@
 <?php
 
-class Tests_LineTest extends Tests_TestAbstract
+class LineTest extends Tests_TestAbstract
 {
     //  {{{ setUp()
 
