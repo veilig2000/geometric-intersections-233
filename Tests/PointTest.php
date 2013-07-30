@@ -28,12 +28,12 @@ class Tests_PointTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ getDistanceShouldReturnDistanceBetweenPoints()
+    //  {{{ getDistanceShouldReturnDistanceBetweenTwoPoints()
 
     /**
      * @test
      */
-    public function getDistanceShouldReturnDistanceBetweenPoints()
+    public function getDistanceShouldReturnDistanceBetweenTwoPoints()
     {
         $factory = $this->_getFactory();
         $point1 = $factory->createPoint(1, 1);

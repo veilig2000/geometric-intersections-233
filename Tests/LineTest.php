@@ -75,12 +75,12 @@ class Tests_LineTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldCalculateIntersectionOfCircle()
+    //  {{{ intersectShouldCalculateLineIntersectionOfCircle()
 
     /**
      * @test
      */
-    public function intersectShouldCalculateIntersectionOfCircle()
+    public function intersectShouldCalculateLineIntersectionOfCircle()
     {
         $factory = $this->_getFactory();
         $point  = $factory->createPoint(1, 1);
@@ -94,12 +94,12 @@ class Tests_LineTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldNotCalculateIntersectionOfCircle()
+    //  {{{ intersectShouldNotCalculateLineIntersectionOfCircle()
 
     /**
      * @test
      */
-    public function intersectShouldNotCalculateIntersectionOfCircle()
+    public function intersectShouldNotCalculateLineIntersectionOfCircle()
     {
         $factory = $this->_getFactory();
         $point  = $factory->createPoint(1, 1);
@@ -113,13 +113,13 @@ class Tests_LineTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldCalculateIntersectionOfLine()
+    //  {{{ intersectShouldCalculateLineIntersectionOfLine()
 
     /**
      * @test
      * @dataProvider pointsProvider
      */
-    public function intersectShouldCalculateIntersectionOfLine(
+    public function intersectShouldCalculateLineIntersectionOfLine(
         $x1, $y1, // point 1
         $x2, $y2, // point 2
         $x3, $y3, // point 3
@@ -138,12 +138,12 @@ class Tests_LineTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldNotCalculateIntersectionOfLine()
+    //  {{{ intersectShouldNotCalculateLineIntersectionOfLine()
 
     /**
      * @test
      */
-    public function intersectShouldNotCalculateIntersectionOfLine()
+    public function intersectShouldNotCalculateLineIntersectionOfLine()
     {
         $factory = $this->_getFactory();
         $pointA1 = $factory->createPoint(2, 7);
@@ -155,6 +155,84 @@ class Tests_LineTest extends Tests_TestAbstract
         $lineB   = $factory->createLine($pointB1, $pointB2);
 
         $this->assertFalse($lineA->intersect($lineB));
+    }
+
+    //  }}}
+    //  {{{ intersectShouldNotCalculateLineIntersectionOfLine2()
+
+    /**
+     * @test
+     */
+    public function intersectShouldNotCalculateLineIntersectionOfLine2()
+    {
+        $factory = $this->_getFactory();
+        $pointA1 = $factory->createPoint(5, 9);
+        $pointA2 = $factory->createPoint(3, 6);
+        $lineA   = $factory->createLine($pointA1, $pointA2);
+
+        $pointB1 = $factory->createPoint(-1, -2);
+        $pointB2 = $factory->createPoint(-3, 2);
+        $lineB   = $factory->createLine($pointB1, $pointB2);
+
+        $this->assertFalse($lineA->intersect($lineB));
+    }
+
+    //  }}}
+    //  {{{ intersectShouldCalculateLineIntersectionOfPolygon()
+
+    /**
+     * @test
+     */
+    public function intersectShouldCalculateLineIntersectionOfPolygon()
+    {
+        $factory = $this->_getFactory();
+        //  Triangle in first quadrant
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
+
+        $collection = $factory->createPointCollection();
+        $collection->add($pointA)
+                   ->add($pointB)
+                   ->add($pointC);
+
+        $polygon = $factory->createPolygon($collection);
+
+        //  Line intersecting triangle
+        $pointD = $factory->createPoint(4, 4);
+        $pointE = $factory->createPoint(5, 7);
+        $line   = $factory->createLine($pointD, $pointE);
+
+        $this->assertTrue($line->intersect($polygon));
+    }
+
+    //  }}}
+    //  {{{ intersectShouldCalculateLineIntersectionOfPolygon2()
+
+    /**
+     * @test
+     */
+    public function intersectShouldCalculateLineIntersectionOfPolygon2()
+    {
+        $factory = $this->_getFactory();
+        //  Triangle in first quadrant
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
+
+        $collection = $factory->createPointCollection();
+        $collection->add($pointA)
+                   ->add($pointB)
+                   ->add($pointC);
+
+        $polygon = $factory->createPolygon($collection);
+
+        //  Line intersecting triangle
+        $pointD = $factory->createPoint(2, 9);
+        $pointE = $factory->createPoint(5, 7);
+        $line   = $factory->createLine($pointD, $pointE);
+
+        $this->assertTrue($line->intersect($polygon));
     }
 
     //  }}}

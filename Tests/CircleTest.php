@@ -124,4 +124,32 @@ class Tests_CircleTest extends Tests_TestAbstract
     }
 
     //  }}}
+    //  {{{ intersectShouldCalculateCircleIntersectionOfPolygon()
+
+    /**
+     * @test
+     */
+    public function intersectShouldCalculateCircleIntersectionOfPolygon()
+    {
+        $factory = $this->_getFactory();
+        //  Triangle in first quadrant
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
+
+        $collection = $factory->createPointCollection();
+        $collection->add($pointA)
+                   ->add($pointB)
+                   ->add($pointC);
+
+        $polygon = $factory->createPolygon($collection);
+
+        //  Line intersecting triangle
+        $pointD = $factory->createPoint(5, 7);
+        $circle = $factory->createCircle($pointD, 5);
+
+        $this->assertTrue($circle->intersect($polygon));
+    }
+
+    //  }}}
 }

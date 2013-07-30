@@ -10,7 +10,7 @@
   <logging>
     <log type="coverage-html" target="./build/coverage" title="HCS"
          charset="UTF-8" yui="true" highlight="true"
-         lowUpperBound="10" highLowerBound="20"/>
+         lowUpperBound="60" highLowerBound="80"/>
     <log type="coverage-clover" target="./build/logs/clover.xml"/>
     <log type="testdox-html" target="./build/logs/testdox.html"/>
     <log type="junit" target="./build/logs/junit.xml" logIncompleteSkipped="false"/>

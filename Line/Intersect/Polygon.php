@@ -1,10 +1,10 @@
 <?php
-class Polygon_Intersect_Line implements IntersectInterface
+class Line_Intersect_Polygon implements IntersectInterface
 {
     //  {{{ properties
 
-    private $_polygon;
     private $_line;
+    private $_polygon;
 
     //  }}}
     //  {{{ __construct()
@@ -12,23 +12,23 @@ class Polygon_Intersect_Line implements IntersectInterface
     /**
      * Constructor
      *
-     * @param Polygon $polygon
      * @param Line    $line
+     * @param Polygon $polygon
      *
      * @return bool
      * @access public
      */
-    public function __construct(Polygon $polygon, Line $line)
+    public function __construct(Line $line, Polygon $polygon)
     {
-        $this->_polygon = $polygon;
         $this->_line    = $line;
+        $this->_polygon = $polygon;
     }
 
     //  }}}
     //  {{{ intersect
 
     /**
-     * Find if a polygon intersects with a Line
+     * Find if a line intersects with a polygon
      *
      * @return bool
      * @access public

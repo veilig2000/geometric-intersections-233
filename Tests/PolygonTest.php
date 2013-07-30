@@ -222,4 +222,84 @@ class Tests_PolygonTest extends Tests_TestAbstract
     }
 
     //  }}}
+    //  {{{ intersectShouldCalculatePolygonIntersectionOfPolygon()
+
+    /**
+     * @test
+     */
+    public function intersectShouldCalculatePolygonIntersectionOfPolygon()
+    {
+        $factory = $this->_getFactory();
+        //  Triangle in first quadrant
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
+
+        $collection1 = $factory->createPointCollection();
+        $collection1->add($pointA)
+                    ->add($pointB)
+                    ->add($pointC);
+
+        $polygon1 = $factory->createPolygon($collection1);
+
+        //  pentagon in first quadrant
+        $pointD = $factory->createPoint(2, 9);
+        $pointE = $factory->createPoint(5, 7);
+        $pointF = $factory->createPoint(4, 4);
+        $pointG = $factory->createPoint(0, 4);
+        $pointH = $factory->createPoint(-1, 7);
+
+        $collection2 = $factory->createPointCollection();
+        $collection2->add($pointD)
+                    ->add($pointE)
+                    ->add($pointF)
+                    ->add($pointG)
+                    ->add($pointH);
+
+        $polygon2 = $factory->createPolygon($collection2);
+
+        $this->assertTrue($polygon1->intersect($polygon2));
+    }
+
+    //  }}}
+    //  {{{ intersectShouldNotCalculatePolygonIntersectionOfPolygon()
+
+    /**
+     * @test
+     */
+    public function intersectShouldNotCalculatePolygonIntersectionOfPolygon()
+    {
+        $factory = $this->_getFactory();
+        //  Triangle in first quadrant
+        $pointA = $factory->createPoint(3, 6);
+        $pointB = $factory->createPoint(8, 4);
+        $pointC = $factory->createPoint(5, 9);
+
+        $collection1 = $factory->createPointCollection();
+        $collection1->add($pointA)
+                    ->add($pointB)
+                    ->add($pointC);
+
+        $polygon1 = $factory->createPolygon($collection1);
+
+        //  pentagon in first quadrant
+        $pointD = $factory->createPoint(2, 1);
+        $pointE = $factory->createPoint(4, -3);
+        $pointF = $factory->createPoint(-2, -6);
+        $pointG = $factory->createPoint(-1, -2);
+        $pointH = $factory->createPoint(-3, 2);
+
+        $collection2 = $factory->createPointCollection();
+        $collection2->add($pointD)
+                    ->add($pointE)
+                    ->add($pointF)
+                    ->add($pointG)
+                    ->add($pointH);
+
+        $polygon2 = $factory->createPolygon($collection2);
+
+        $this->assertFalse($polygon1->intersect($polygon2));
+    }
+
+    //  }}}
 }
