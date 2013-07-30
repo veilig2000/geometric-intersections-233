@@ -12,7 +12,7 @@ Typical Setup
 -------------
 1.  Get a factory
 
-        $factory = new Factory
+        $factory = new Factory();
 2.  Use the factory to create points which you can then use via dependency injection and composition to create objects
 
         $point  = $factory->createPoint(<xCoord>, <yCoord>);
