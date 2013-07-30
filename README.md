@@ -25,7 +25,7 @@ Geometric Calculations
      [x] Create point should return point object
      [x] Create line should return line object
      [x] Create circle should return circle object
-     [x] Create point collectionhould return point collection object
+     [x] Create point collection should return point collection object
      [x] Create polygon should return polygon object
 
     Line
