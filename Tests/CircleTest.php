@@ -50,12 +50,12 @@ class Tests_CircleTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldCalculateIntersectionOfLine()
+    //  {{{ intersectShouldCalculateCircleIntersectionOfLine()
 
     /**
      * @test
      */
-    public function intersectShouldCalculateIntersectionOfLine()
+    public function intersectShouldCalculateCircleIntersectionOfLine()
     {
         $factory = $this->_getFactory();
         $point  = $factory->createPoint(1, 1);
@@ -69,12 +69,12 @@ class Tests_CircleTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldNotCalculateIntersectionOfLine()
+    //  {{{ intersectShouldNotCalculateCircleIntersectionOfLine()
 
     /**
      * @test
      */
-    public function intersectShouldNotCalculateIntersectionOfLine()
+    public function intersectShouldNotCalculateCircleIntersectionOfLine()
     {
         $factory = $this->_getFactory();
         $point  = $factory->createPoint(1, 1);
@@ -88,12 +88,12 @@ class Tests_CircleTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldCalculateIntersectionOfCircle()
+    //  {{{ intersectShouldCalculateCircleIntersectionOfCircle()
 
     /**
      * @test
      */
-    public function intersectShouldCalculateIntersectionOfCircle()
+    public function intersectShouldCalculateCircleIntersectionOfCircle()
     {
         $factory = $this->_getFactory();
         $point1  = $factory->createPoint(-4, 1);
@@ -106,12 +106,12 @@ class Tests_CircleTest extends Tests_TestAbstract
     }
 
     //  }}}
-    //  {{{ intersectShouldNotCalculateIntersectionOfCircle()
+    //  {{{ intersectShouldNotCalculateCircleIntersectionOfCircle()
 
     /**
      * @test
      */
-    public function intersectShouldNotCalculateIntersectionOfCircle()
+    public function intersectShouldNotCalculateCircleIntersectionOfCircle()
     {
         $factory = $this->_getFactory();
         $point1  = $factory->createPoint(-4, -5);
