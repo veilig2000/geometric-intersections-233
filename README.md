@@ -11,18 +11,21 @@ Introduction
 Typical Setup
 -------------
 1.  Get a factory
-    $factory = new Factory
-2.  Use the factory to create points which you can then use via dependency injection and composition to create objects
-    $point  = $factory->createPoint(<xCoord>, <yCoord>);
-    $circle = $factory->createCircle($point, <radius>);
 
-    $point1 = $factory->createPoint(<xCoord>, <yCoord>);
-    $point2 = $factory->createPoint(<xCoord>, <yCoord>);
-    $line   = $factory->createLine($point1, $point2);
+        $factory = new Factory
+2.  Use the factory to create points which you can then use via dependency injection and composition to create objects
+
+        $point  = $factory->createPoint(<xCoord>, <yCoord>);
+        $circle = $factory->createCircle($point, <radius>);
+
+        $point1 = $factory->createPoint(<xCoord>, <yCoord>);
+        $point2 = $factory->createPoint(<xCoord>, <yCoord>);
+        $line   = $factory->createLine($point1, $point2);
 3.  Once you have some Geometric Elements created, you can test their intersection
-    $circle->inserect($line);
+
+        $circle->inserect($line);
     or
-    $line->intersect($circle);
+        $line->intersect($circle);
 
 
 PHPUnit --testdox
