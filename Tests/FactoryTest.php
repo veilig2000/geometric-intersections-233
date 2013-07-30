@@ -51,12 +51,12 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     }
 
     //  }}}
-    //  {{{ createPointCollectionhouldReturnPointCollectionObject()
+    //  {{{ createPointCollectionShouldReturnPointCollectionObject()
 
     /**
      * @test
      */
-    public function createPointCollectionhouldReturnPointCollectionObject()
+    public function createPointCollectionShouldReturnPointCollectionObject()
     {
         $pointCollection = $this->_sut->createPointCollection();
         $this->assertInstanceOf('Point_Collection', $pointCollection);
