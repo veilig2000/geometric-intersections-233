@@ -78,24 +78,11 @@ class Circle implements ElementInterface
     public function intersect(ElementInterface $element)
     {
         if ('Line' == get_class($element)) {
-            $p1 = $element->getPoint1();
-            $p2 = $element->getPoint2();
-            $c  = $this->_point;
-
-            $point1Distance = $this->_point->getDistance($p1);
-            $point2Distance = $this->_point->getDistance($p2);
-
-            $minDistance = min($point1Distance, $point2Distance);
-
-            return $this->_radius >= $minDistance;
+            $intersector = new Circle_Intersect_Line;
         } elseif ('Circle' == get_class($element)) {
-            $point1 = $this->getPoint();
-            $point2 = $element->getPoint();
-
-            $distance = $point1->getDistance($point2);
-
-            return ($this->getRadius() + $element->getRadius()) >= $distance;
+            $intersector = new Circle_Intersect_Circle;
         }
+        return $intersector->intersect($this, $element);
     }
 
     //  }}}

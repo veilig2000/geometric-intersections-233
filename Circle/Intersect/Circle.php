@@ -1,15 +1,26 @@
 <?php
 class Circle_Intersect_Circle implements IntersectInterface
 {
-    public function intersect(Circle $circle1, Circle $circle2)
+    //  {{{ intersect()
+
+    /**
+     * Find if a circle intersects with another circle
+     *
+     * @param ElementInterface $e1 Circle
+     * @param ElementInterface $e2 Circle
+     *
+     * @return bool
+     * @access public
+     */
+    public function intersect(ElementInterface $e1, ElementInterface $e2)
     {
-        $point1 = $circle1->getPoint();
-        $point2 = $circle2->getPoint();
+        $point1 = $e1->getPoint();
+        $point2 = $e2->getPoint();
 
         $distance = $point1->getDistance($point2);
 
-        $radius1 = $circle1->getRadius();
-        $radius2 = $circle2->getRadius();
-        return ($radius1 + $radius2) >= $minDistance;
+        return ($e1->getRadius() + $e2->getRadius()) >= $distance;
     }
+
+    //  }}}
 }

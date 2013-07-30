@@ -86,22 +86,12 @@ class Polygon implements ElementInterface
     public function intersect(ElementInterface $element)
     {
         if ('Line' == get_class($element)) {
-            $lines = $this->getLines();
-            foreach ($lines as $line) {
-                if ($line->intersect($element)) {
-                    return true;
-                }
-            }
+            $intersector = new Polygon_Intersect_Line;
         } elseif ('Circle' == get_class($element)) {
-            $lines = $this->getLines();
-            foreach ($lines as $line) {
-                if ($line->intersect($element)) {
-                    return true;
-                }
-            }
+            $intersector = new Polygon_Intersect_Circle;
         }
 
-        return false;
+        return $intersector->intersect($this, $element);
     }
 
     //  }}}
